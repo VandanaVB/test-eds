@@ -1,0 +1,3 @@
+- [Local block testing](local-block-testing.md) — aem up --html-folder doesn't inject the runtime; use a full HTML doc
+- [Project lint quirks](project-lint-quirks.md) — customized decorateButtons (bold=button) + --legacy-peer-deps needed
+- [Block cell picture fill](block-cell-picture-fill.md) — cover images in a block cell need JS normalization, CSS alone fails

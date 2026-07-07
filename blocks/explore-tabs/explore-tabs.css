@@ -1,0 +1,190 @@
+/* Explore Tabs block — "Discover the World of Maruti Suzuki" (Figma 898:25010) */
+
+.explore-tabs-container .explore-tabs-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.explore-tabs {
+  position: relative;
+  padding: 56px 24px 72px;
+  background:
+    linear-gradient(180deg, rgb(4 10 60 / 92%), rgb(4 10 60 / 96%)),
+    center / cover no-repeat var(--explore-tabs-bg, #04093c);
+  color: #fff;
+}
+
+.explore-tabs .explore-tabs-inner {
+  position: relative;
+  max-width: var(--msil-maxw);
+  margin: 0 auto;
+}
+
+/* Header */
+.explore-tabs .explore-tabs-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.explore-tabs .explore-tabs-header h2 {
+  margin: 0 0 12px;
+  font-family: var(--body-font-family);
+  font-weight: 300;
+  font-size: clamp(1.8rem, 4.5vw, 48px);
+  color: #fff;
+}
+
+.explore-tabs .explore-tabs-header p {
+  margin: 0 auto;
+  max-width: 52ch;
+  color: rgb(255 255 255 / 70%);
+}
+
+/* Track */
+.explore-tabs .explore-tabs-scroller { overflow: hidden; }
+
+.explore-tabs .explore-tabs-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 92%;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.explore-tabs .explore-tabs-track::-webkit-scrollbar { display: none; }
+
+/* Panel */
+.explore-tabs .explore-tab {
+  display: grid;
+  gap: 20px;
+  scroll-snap-align: center;
+  padding: 28px;
+  border-radius: var(--msil-radius-card);
+  background: #fff;
+  color: var(--text-color);
+}
+
+.explore-tabs .explore-tab-title {
+  margin: 0 0 8px;
+  font-family: var(--body-font-family);
+  font-weight: 500;
+  font-size: var(--heading-font-size-m);
+}
+
+.explore-tabs .explore-tab-media {
+  order: -1;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+
+.explore-tabs .explore-tab-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Accordion items */
+.explore-tabs .explore-tab-item {
+  border-top: 1px solid var(--msil-line);
+}
+
+.explore-tabs .explore-tab-item:last-child { border-bottom: 1px solid var(--msil-line); }
+
+.explore-tabs .explore-tab-item-head {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  width: 100%;
+  padding: 14px 0;
+  border: 0;
+  background: none;
+  color: var(--msil-faint);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.explore-tabs .explore-tab-num { font-variant-numeric: tabular-nums; }
+
+.explore-tabs .explore-tab-item-title {
+  font-size: var(--heading-font-size-s);
+  color: var(--text-color);
+}
+
+.explore-tabs .explore-tab-item.is-open .explore-tab-item-head,
+.explore-tabs .explore-tab-item.is-open .explore-tab-num {
+  color: var(--msil-blue);
+}
+
+.explore-tabs .explore-tab-item.is-open .explore-tab-item-title {
+  color: var(--msil-blue);
+}
+
+.explore-tabs .explore-tab-item-body {
+  display: none;
+  padding: 0 0 16px 38px;
+}
+
+.explore-tabs .explore-tab-item.is-open .explore-tab-item-body { display: block; }
+
+.explore-tabs .explore-tab-item-body p {
+  margin: 0 0 10px;
+  color: var(--msil-muted);
+  font-size: var(--body-font-size-s);
+}
+
+.explore-tabs .explore-tab-readmore {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--msil-blue);
+  font-weight: 600;
+}
+
+.explore-tabs .explore-tab-readmore::after { content: '↗'; }
+
+/* Controls */
+.explore-tabs .explore-tabs-controls {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.explore-tabs .explore-tabs-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--msil-blue);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.explore-tabs .explore-tabs-arrow:hover { background: var(--msil-surface-2); }
+
+@media (width >= 900px) {
+  .explore-tabs .explore-tabs-track { grid-auto-columns: 62%; }
+
+  .explore-tabs .explore-tab {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 36px;
+  }
+
+  .explore-tabs .explore-tab-media {
+    order: 0;
+    aspect-ratio: 3 / 4;
+    max-height: 420px;
+  }
+}

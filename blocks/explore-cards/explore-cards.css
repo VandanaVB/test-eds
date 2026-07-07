@@ -1,0 +1,145 @@
+/* Explore Cards block — "Keep Exploring" (Figma 898:25012) */
+
+.explore-cards {
+  display: grid;
+  gap: 24px;
+  max-width: var(--msil-maxw);
+  margin: 0 auto;
+}
+
+.explore-cards .explore-cards-header h2 {
+  margin: 0 0 12px;
+  color: var(--msil-blue);
+  font-family: var(--body-font-family);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 4vw, 40px);
+}
+
+.explore-cards .explore-cards-header p {
+  margin: 0;
+  max-width: 30ch;
+  color: var(--msil-muted);
+}
+
+.explore-cards .explore-cards-scroller {
+  overflow: hidden;
+}
+
+.explore-cards .explore-cards-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 78%;
+  gap: 20px;
+  margin: 0;
+  padding: 0 0 4px;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.explore-cards .explore-cards-track::-webkit-scrollbar { display: none; }
+
+.explore-cards .explore-card {
+  position: relative;
+  scroll-snap-align: start;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--msil-radius-card);
+  overflow: hidden;
+}
+
+.explore-cards .explore-card.is-linked { cursor: pointer; }
+
+.explore-cards .explore-card picture,
+.explore-cards .explore-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.explore-cards .explore-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgb(4 10 60 / 85%) 0%, rgb(4 10 60 / 10%) 55%, rgb(4 10 60 / 0%) 100%);
+}
+
+.explore-cards .explore-card-overlay {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 1;
+  padding: 24px;
+  color: #fff;
+}
+
+.explore-cards .explore-card-overlay h3 {
+  margin: 0 0 8px;
+  font-family: var(--body-font-family);
+  font-weight: 400;
+  font-size: var(--heading-font-size-l);
+  color: #fff;
+}
+
+.explore-cards .explore-card-overlay p {
+  margin: 0;
+  max-width: 34ch;
+  color: rgb(255 255 255 / 85%);
+  font-size: var(--body-font-size-xs);
+}
+
+.explore-cards .explore-card-arrow {
+  position: absolute;
+  z-index: 2;
+  right: 20px;
+  bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 18%);
+  color: #fff;
+  font-size: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.explore-cards .explore-card-arrow:hover {
+  background: #fff;
+  color: var(--msil-navy);
+}
+
+/* Progress bar */
+.explore-cards .explore-cards-progress {
+  height: 3px;
+  border-radius: 3px;
+  background: var(--msil-line);
+  overflow: hidden;
+}
+
+.explore-cards .explore-cards-progress span {
+  display: block;
+  height: 100%;
+  width: 30%;
+  border-radius: 3px;
+  background: var(--msil-blue);
+  transition: width 0.15s ease-out;
+}
+
+@media (width >= 600px) {
+  .explore-cards .explore-cards-track { grid-auto-columns: 44%; }
+}
+
+@media (width >= 900px) {
+  .explore-cards {
+    grid-template-columns: 300px 1fr;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .explore-cards .explore-cards-header { align-self: center; }
+  .explore-cards .explore-cards-track { grid-auto-columns: 30%; }
+  .explore-cards .explore-cards-progress { grid-column: 2; }
+}
