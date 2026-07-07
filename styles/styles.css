@@ -38,6 +38,21 @@
 
   /* nav height */
   --nav-height: 64px;
+
+  /* Design tokens from Figma — MSIL Corporate */
+  --msil-blue: #171c8f;          /* primary brand indigo (CTAs, links) */
+  --msil-blue-hover: #10156b;
+  --msil-blue-bright: #2b3ce6;   /* accent blue (heading highlights) */
+  --msil-navy: #010a4b;          /* footer / dark sections */
+  --msil-navy-2: #0b1560;        /* get-updates dark section */
+  --msil-muted: #6b6b6b;         /* muted body / descriptions */
+  --msil-faint: #b1b1b1;         /* faint numbers / inactive */
+  --msil-surface: #fff;
+  --msil-surface-2: #f5f5f5;
+  --msil-line: #e6e6e6;
+  --msil-radius-card: 20px;
+  --msil-radius-cta: 10px;
+  --msil-maxw: 1366px;           /* design frame width */
 }
 
 /* fallback fonts */
