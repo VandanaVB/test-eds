@@ -171,7 +171,12 @@
   cursor: pointer;
 }
 
-.explore-tabs .explore-tabs-arrow:hover { background: var(--msil-surface-2); }
+.explore-tabs .explore-tabs-arrow:hover:not(:disabled) { background: var(--msil-surface-2); }
+
+.explore-tabs .explore-tabs-arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 
 @media (width >= 900px) {
   .explore-tabs .explore-tabs-track { grid-auto-columns: 62%; }

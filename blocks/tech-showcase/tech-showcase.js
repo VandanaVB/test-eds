@@ -9,6 +9,8 @@
  *
  * @param {Element} block
  */
+import initCarousel from '../../scripts/carousel.js';
+
 export default function decorate(block) {
   const rows = [...block.children];
 
@@ -51,18 +53,14 @@ export default function decorate(block) {
 
   const controls = document.createElement('div');
   controls.className = 'tech-showcase-controls';
-  const scrollByCard = (dir) => {
-    const card = track.querySelector('.tech-showcase-slide');
-    const step = card ? card.getBoundingClientRect().width + 24 : 400;
-    track.scrollBy({ left: dir * step, behavior: 'smooth' });
-  };
+  const arrows = {};
   ['prev', 'next'].forEach((kind) => {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = `tech-showcase-arrow tech-showcase-${kind}`;
     btn.setAttribute('aria-label', kind === 'prev' ? 'Previous' : 'Next');
     btn.innerHTML = `<span aria-hidden="true">${kind === 'prev' ? '‹' : '›'}</span>`;
-    btn.addEventListener('click', () => scrollByCard(kind === 'prev' ? -1 : 1));
+    arrows[kind] = btn;
     controls.append(btn);
   });
 
@@ -72,4 +70,6 @@ export default function decorate(block) {
 
   block.textContent = '';
   block.append(header, carousel);
+
+  initCarousel(track, { prev: arrows.prev, next: arrows.next, controls });
 }
