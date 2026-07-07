@@ -10,6 +10,8 @@
  *
  * @param {Element} block
  */
+import initCarousel from '../../scripts/carousel.js';
+
 export default function decorate(block) {
   const rows = [...block.children];
 
@@ -104,18 +106,14 @@ export default function decorate(block) {
 
   const controls = document.createElement('div');
   controls.className = 'explore-tabs-controls';
-  const scrollByPanel = (dir) => {
-    const p = track.querySelector('.explore-tab');
-    const step = p ? p.getBoundingClientRect().width + 24 : 400;
-    track.scrollBy({ left: dir * step, behavior: 'smooth' });
-  };
+  const arrows = {};
   ['prev', 'next'].forEach((kind) => {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = `explore-tabs-arrow explore-tabs-${kind}`;
     btn.setAttribute('aria-label', kind === 'prev' ? 'Previous' : 'Next');
     btn.innerHTML = `<span aria-hidden="true">${kind === 'prev' ? '←' : '→'}</span>`;
-    btn.addEventListener('click', () => scrollByPanel(kind === 'prev' ? -1 : 1));
+    arrows[kind] = btn;
     controls.append(btn);
   });
 
@@ -128,4 +126,6 @@ export default function decorate(block) {
 
   block.textContent = '';
   block.append(inner);
+
+  initCarousel(track, { prev: arrows.prev, next: arrows.next, controls });
 }

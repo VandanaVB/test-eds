@@ -124,9 +124,14 @@
   cursor: pointer;
 }
 
-.tech-showcase .tech-showcase-arrow:hover {
+.tech-showcase .tech-showcase-arrow:hover:not(:disabled) {
   border-color: var(--msil-blue);
   color: var(--msil-blue);
+}
+
+.tech-showcase .tech-showcase-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 @media (width >= 900px) {

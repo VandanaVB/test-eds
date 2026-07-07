@@ -111,8 +111,15 @@
   color: var(--msil-navy);
 }
 
-/* Progress bar */
+/* Footer: progress bar + controls */
+.explore-cards .explore-cards-footer {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
 .explore-cards .explore-cards-progress {
+  flex: 1;
   height: 3px;
   border-radius: 3px;
   background: var(--msil-line);
@@ -128,6 +135,36 @@
   transition: width 0.15s ease-out;
 }
 
+.explore-cards .explore-cards-controls {
+  display: none;
+  gap: 12px;
+}
+
+.explore-cards .explore-cards-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--msil-blue);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--msil-blue);
+  font-size: 18px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.explore-cards .explore-cards-arrow:hover:not(:disabled) {
+  background: var(--msil-blue);
+  color: #fff;
+}
+
+.explore-cards .explore-cards-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
 @media (width >= 600px) {
   .explore-cards .explore-cards-track { grid-auto-columns: 44%; }
 }
@@ -141,5 +178,6 @@
 
   .explore-cards .explore-cards-header { align-self: center; }
   .explore-cards .explore-cards-track { grid-auto-columns: 30%; }
-  .explore-cards .explore-cards-progress { grid-column: 2; }
+  .explore-cards .explore-cards-footer { grid-column: 2; }
+  .explore-cards .explore-cards-controls { display: flex; }
 }

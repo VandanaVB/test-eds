@@ -8,6 +8,8 @@
  *
  * @param {Element} block
  */
+import initCarousel from '../../scripts/carousel.js';
+
 export default function decorate(block) {
   const rows = [...block.children];
 
@@ -56,22 +58,40 @@ export default function decorate(block) {
     track.append(li);
   });
 
-  const progress = document.createElement('div');
-  progress.className = 'explore-cards-progress';
-  const bar = document.createElement('span');
-  progress.append(bar);
-  const updateBar = () => {
-    const max = track.scrollWidth - track.clientWidth;
-    const pct = max > 0 ? (track.scrollLeft / max) * 100 : 100;
-    bar.style.width = `${Math.max(18, pct)}%`;
-  };
-  track.addEventListener('scroll', updateBar, { passive: true });
-
   const scroller = document.createElement('div');
   scroller.className = 'explore-cards-scroller';
   scroller.append(track);
 
+  // Footer: progress bar + prev/next controls.
+  const progress = document.createElement('div');
+  progress.className = 'explore-cards-progress';
+  const bar = document.createElement('span');
+  progress.append(bar);
+
+  const controls = document.createElement('div');
+  controls.className = 'explore-cards-controls';
+  const arrows = {};
+  ['prev', 'next'].forEach((kind) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = `explore-cards-arrow explore-cards-${kind}`;
+    btn.setAttribute('aria-label', kind === 'prev' ? 'Previous' : 'Next');
+    btn.innerHTML = `<span aria-hidden="true">${kind === 'prev' ? '←' : '→'}</span>`;
+    arrows[kind] = btn;
+    controls.append(btn);
+  });
+
+  const footer = document.createElement('div');
+  footer.className = 'explore-cards-footer';
+  footer.append(progress, controls);
+
   block.textContent = '';
-  block.append(header, scroller, progress);
-  requestAnimationFrame(updateBar);
+  block.append(header, scroller, footer);
+
+  initCarousel(track, {
+    prev: arrows.prev,
+    next: arrows.next,
+    controls,
+    onChange: (p) => { bar.style.width = `${Math.max(18, p * 100)}%`; },
+  });
 }
